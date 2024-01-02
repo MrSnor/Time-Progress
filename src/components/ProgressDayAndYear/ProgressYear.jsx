@@ -8,13 +8,13 @@ const ProgressYear = () => {
   useEffect(() => {
     const updateProgress = () => {
       const now = new Date();
-      const totalMillisecondsInYear = 365 * 24 * 60 * 60 * 1000;
-      const millisecondsPassed =
-        now.getTime() - new Date(now.getFullYear(), 0, 1).getTime();
+      const startOfYear = new Date(now.getFullYear(), 0, 1);
+      const endOfYear = new Date(now.getFullYear() + 1, 0, 1);
+      const totalMillisecondsInYear =
+        endOfYear.getTime() - startOfYear.getTime();
+      const millisecondsPassed = now.getTime() - startOfYear.getTime();
       const percentage = (millisecondsPassed / totalMillisecondsInYear) * 100;
       setProgress(percentage);
-
-      // get days left in current year
 
       const timeLeftInMilliseconds =
         totalMillisecondsInYear - millisecondsPassed;
