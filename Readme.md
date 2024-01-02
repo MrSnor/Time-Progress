@@ -1,6 +1,6 @@
-# Vite boilerplate for React with Tailwindcss (Eslint + Prettier + Husky)
+# Time Progress
 
-Use this boilerplate as the starting point for your React + Tailwind CSS based projects.
+Track your time with precision and accuracy - see the progress of the minute, hour, day, and year all in one place.
 
 ## Features
 
@@ -20,21 +20,21 @@ Use this boilerplate as the starting point for your React + Tailwind CSS based p
 
 1. Clone the repo
 
-    ```bash
-    git clone [this repo]
-    ```
+   ```bash
+   git clone [this repo]
+   ```
 
 2. Install dependencies
 
-    ```bash
-    pnpm install
-    ```
+   ```bash
+   pnpm install
+   ```
 
 3. Start the dev server
 
-    ```bash
-    pnpm run dev
-    ```
+   ```bash
+   pnpm run dev
+   ```
 
 ## Author
 
