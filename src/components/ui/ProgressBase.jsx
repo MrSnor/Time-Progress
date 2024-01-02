@@ -13,7 +13,7 @@ const ProgressBase = ({ label, progress: progressPercent, timeLeft }) => {
       <Toggle
         onClick={() => setisPercentVisible(!isPercentVisible)}
         className="hidden whitespace-nowrap ring-1 ring-white/20 sm:block"
-        defaultPressed={isPercentVisible}
+        pressed={isPercentVisible}
       >
         <Percent className="h-4 w-4" />
       </Toggle>
@@ -60,7 +60,7 @@ const ProgressBase = ({ label, progress: progressPercent, timeLeft }) => {
       <Toggle
         onClick={() => setisTimeLeftVisible(!isTimeLeftVisible)}
         className="hidden whitespace-nowrap ring-1 ring-white/20 sm:block"
-        defaultPressed={isTimeLeftVisible}
+        pressed={isTimeLeftVisible}
       >
         {" "}
         <Hourglass className="h-4 w-4" />{" "}
@@ -71,7 +71,7 @@ const ProgressBase = ({ label, progress: progressPercent, timeLeft }) => {
         <Toggle
           onClick={() => setisPercentVisible(!isPercentVisible)}
           className="whitespace-nowrap ring-1 ring-white/20"
-          defaultPressed={isPercentVisible}
+          pressed={isPercentVisible}
         >
           <Percent className="h-4 w-4" />
         </Toggle>
@@ -79,7 +79,7 @@ const ProgressBase = ({ label, progress: progressPercent, timeLeft }) => {
         <Toggle
           onClick={() => setisTimeLeftVisible(!isTimeLeftVisible)}
           className="whitespace-nowrap ring-1 ring-white/20"
-          defaultPressed={isTimeLeftVisible}
+          pressed={isTimeLeftVisible}
         >
           {" "}
           <Hourglass className="h-4 w-4" />{" "}
