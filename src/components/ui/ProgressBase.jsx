@@ -8,11 +8,11 @@ const ProgressBase = ({ label, progress: progressPercent, timeLeft }) => {
   const [isTimeLeftVisible, setisTimeLeftVisible] = useState(true);
 
   return (
-    <div className="flex items-center gap-5">
+    <div className="flex flex-col items-center sm:flex-row sm:gap-5">
       {/* percent toggle */}
       <Toggle
         onClick={() => setisPercentVisible(!isPercentVisible)}
-        className="whitespace-nowrap ring-1 ring-white/20"
+        className="hidden whitespace-nowrap ring-1 ring-white/20 sm:block"
         defaultPressed={isPercentVisible}
       >
         <Percent className="h-4 w-4" />
@@ -59,12 +59,32 @@ const ProgressBase = ({ label, progress: progressPercent, timeLeft }) => {
       {/* time left toggle */}
       <Toggle
         onClick={() => setisTimeLeftVisible(!isTimeLeftVisible)}
-        className="whitespace-nowrap ring-1 ring-white/20"
+        className="hidden whitespace-nowrap ring-1 ring-white/20 sm:block"
         defaultPressed={isTimeLeftVisible}
       >
         {" "}
         <Hourglass className="h-4 w-4" />{" "}
       </Toggle>
+
+      {/* single container for both toggles in mobiles view */}
+      {/* <div className="flex gap-4 justify-center sm:hidden">
+        <Toggle
+          onClick={() => setisPercentVisible(!isPercentVisible)}
+          className="whitespace-nowrap ring-1 ring-white/20"
+          defaultPressed={isPercentVisible}
+        >
+          <BadgePercent className="h-4 w-4" />
+        </Toggle>
+
+        <Toggle
+          onClick={() => setisTimeLeftVisible(!isTimeLeftVisible)}
+          className="whitespace-nowrap ring-1 ring-white/20"
+          defaultPressed={isTimeLeftVisible}
+        >
+          {" "}
+          <Hourglass className="h-4 w-4" />{" "}
+        </Toggle>
+      </div> */}
     </div>
   );
 };

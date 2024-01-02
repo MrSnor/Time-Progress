@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ProgressBase from "./ui/ProgressBase";
+import ProgressBase from "../ui/ProgressBase";
 
 const ProgressYear = () => {
   const [progress, setProgress] = useState(0);
