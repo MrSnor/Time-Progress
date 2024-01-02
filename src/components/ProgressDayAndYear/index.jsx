@@ -1,7 +1,8 @@
-import ProgressDay from "@/components/ProgressDayAndYear/ProgressDay";
-import ProgressHour from "@/components/ProgressDayAndYear/ProgressHour";
-import ProgressMinute from "@/components/ProgressDayAndYear/ProgressMinute";
-import ProgressYear from "@/components/ProgressDayAndYear/ProgressYear";
+import React from "react";
+import ProgressDay from "./ProgressDay";
+import ProgressHour from "./ProgressHour";
+import ProgressMinute from "./ProgressMinute";
+import ProgressYear from "./ProgressYear";
 
 const Index = () => {
   return (
