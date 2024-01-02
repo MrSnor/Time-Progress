@@ -1,5 +1,5 @@
 import { Toggle } from "@/components/ui/toggle";
-import { BadgePercent, Hourglass, Percent } from "lucide-react";
+import { Hourglass, Percent } from "lucide-react";
 import { useState } from "react";
 
 const ProgressBase = ({ label, progress: progressPercent, timeLeft }) => {
@@ -67,13 +67,13 @@ const ProgressBase = ({ label, progress: progressPercent, timeLeft }) => {
       </Toggle>
 
       {/* single container for both toggles in mobiles view */}
-      {/* <div className="flex gap-4 justify-center sm:hidden">
+      <div className="flex w-full justify-between gap-4 sm:hidden">
         <Toggle
           onClick={() => setisPercentVisible(!isPercentVisible)}
           className="whitespace-nowrap ring-1 ring-white/20"
           defaultPressed={isPercentVisible}
         >
-          <BadgePercent className="h-4 w-4" />
+          <Percent className="h-4 w-4" />
         </Toggle>
 
         <Toggle
@@ -84,7 +84,7 @@ const ProgressBase = ({ label, progress: progressPercent, timeLeft }) => {
           {" "}
           <Hourglass className="h-4 w-4" />{" "}
         </Toggle>
-      </div> */}
+      </div>
     </div>
   );
 };
