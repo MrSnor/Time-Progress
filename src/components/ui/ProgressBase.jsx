@@ -1,23 +1,11 @@
-import { Toggle } from "@/components/ui/toggle";
-import { Hourglass, Percent } from "lucide-react";
-import { useState } from "react";
+import VisibilityContext from "@/contexts/Visibility/VisibilityContext";
+import { useContext } from "react";
 
 const ProgressBase = ({ label, progress: progressPercent, timeLeft }) => {
-  const [isPercentVisible, setisPercentVisible] = useState(true);
-
-  const [isTimeLeftVisible, setisTimeLeftVisible] = useState(true);
+  const { isPercentVisible, isTimeLeftVisible } = useContext(VisibilityContext);
 
   return (
     <div className="flex flex-col items-center sm:flex-row sm:gap-5">
-      {/* percent toggle */}
-      <Toggle
-        onClick={() => setisPercentVisible(!isPercentVisible)}
-        className="hidden whitespace-nowrap ring-1 ring-white/20 sm:block"
-        pressed={isPercentVisible}
-      >
-        <Percent className="h-4 w-4" />
-      </Toggle>
-
       <div className="my-4 w-full text-white">
         <div className="label">{label}</div>
 
@@ -54,36 +42,6 @@ const ProgressBase = ({ label, progress: progressPercent, timeLeft }) => {
             xyz
           </div>
         </div>
-      </div>
-
-      {/* time left toggle */}
-      <Toggle
-        onClick={() => setisTimeLeftVisible(!isTimeLeftVisible)}
-        className="hidden whitespace-nowrap ring-1 ring-white/20 sm:block"
-        pressed={isTimeLeftVisible}
-      >
-        {" "}
-        <Hourglass className="h-4 w-4" />{" "}
-      </Toggle>
-
-      {/* single container for both toggles in mobiles view */}
-      <div className="flex w-full justify-between gap-4 sm:hidden">
-        <Toggle
-          onClick={() => setisPercentVisible(!isPercentVisible)}
-          className="whitespace-nowrap ring-1 ring-white/20"
-          pressed={isPercentVisible}
-        >
-          <Percent className="h-4 w-4" />
-        </Toggle>
-
-        <Toggle
-          onClick={() => setisTimeLeftVisible(!isTimeLeftVisible)}
-          className="whitespace-nowrap ring-1 ring-white/20"
-          pressed={isTimeLeftVisible}
-        >
-          {" "}
-          <Hourglass className="h-4 w-4" />{" "}
-        </Toggle>
       </div>
     </div>
   );
