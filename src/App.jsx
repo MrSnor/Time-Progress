@@ -5,6 +5,8 @@ import ProgressYear from "@/components/ProgressDayAndYear/ProgressYear";
 import { Toggle } from "@/components/ui/toggle";
 import { Hourglass, Percent } from "lucide-react";
 import { useContext } from "react";
+import ToggleThemeButton from "./components/ThemeButton/ToggleThemeButton";
+import { useTheme } from "./contexts/Theme/ThemeContext";
 import VisibilityContext from "./contexts/Visibility/VisibilityContext";
 
 const Index = () => {
@@ -15,9 +17,14 @@ const Index = () => {
     setisTimeLeftVisible,
   } = useContext(VisibilityContext);
 
+  const { theme } = useTheme();
   return (
     <>
-      <div className="grid min-h-screen place-content-center bg-rose-800 text-white">
+      <div
+        className={`grid min-h-screen place-content-center bg-rose-800 text-white transition duration-500 ${
+          theme === "dark" ? "grayscale" : ""
+        }`}
+      >
         <div className="title mb-4 flex justify-between text-center text-3xl">
           {/* percent toggle */}
           <Toggle
@@ -45,6 +52,7 @@ const Index = () => {
           <ProgressYear />
         </div>
       </div>
+      <ToggleThemeButton />
     </>
   );
 };
