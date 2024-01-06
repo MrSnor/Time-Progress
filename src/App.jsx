@@ -17,7 +17,7 @@ const Index = () => {
 
   return (
     <>
-      <div className="font-SF-Pro-Display grid min-h-screen place-content-center bg-rose-800 text-white">
+      <div className="grid min-h-screen place-content-center bg-rose-800 text-white">
         <div className="title mb-4 flex justify-between text-center text-3xl">
           {/* percent toggle */}
           <Toggle
@@ -38,7 +38,7 @@ const Index = () => {
             <Hourglass className="h-4 w-4" />{" "}
           </Toggle>
         </div>
-        <div className="container w-[90vw] sm:w-[40rem]">
+        <div className="w-[90vw] sm:w-[40rem]">
           <ProgressMinute />
           <ProgressHour />
           <ProgressDay />
