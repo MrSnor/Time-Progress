@@ -7,10 +7,14 @@ const ThemeContext = createContext();
 
 // Create a provider component
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState("light"); // Default theme is 'light'
+  const storedTheme = localStorage.getItem("storedTheme");
+  const [theme, setTheme] = useState(storedTheme || "light"); // Default theme is 'light'
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+    // setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("storedTheme", newTheme);
   };
 
   return (
