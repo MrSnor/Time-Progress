@@ -28,7 +28,15 @@ const Index = () => {
         <div className="title mb-4 flex justify-between text-center text-3xl">
           {/* percent toggle */}
           <Toggle
-            onClick={() => setisPercentVisible(!isPercentVisible)}
+            onClick={() => {
+              const newPercentVisibility = !isPercentVisible;
+
+              setisPercentVisible(newPercentVisibility);
+              localStorage.setItem(
+                "storedPercentVisibility",
+                newPercentVisibility,
+              );
+            }}
             className="whitespace-nowrap ring-1 ring-white/20"
             pressed={isPercentVisible}
           >
@@ -37,7 +45,11 @@ const Index = () => {
           <span className="">Time progress:</span>
 
           <Toggle
-            onClick={() => setisTimeLeftVisible(!isTimeLeftVisible)}
+            onClick={() => {
+              const newTimeVisibility = !isTimeLeftVisible;
+              setisTimeLeftVisible(newTimeVisibility);
+              localStorage.setItem("storedTimeVisibility", newTimeVisibility);
+            }}
             className="whitespace-nowrap ring-1 ring-white/20"
             pressed={isTimeLeftVisible}
           >
