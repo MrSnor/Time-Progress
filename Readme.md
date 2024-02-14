@@ -21,7 +21,7 @@ Track your time with precision and accuracy - see the progress of the minute, ho
 1. Clone the repo
 
    ```bash
-   git clone [this repo]
+   git clone https://github.com/MrSnor/Time-Progress.git
    ```
 
 2. Install dependencies
