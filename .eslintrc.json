@@ -16,6 +16,14 @@
       {
         "includeExports": false
       }
+    ],
+    "react/prop-types": [
+      "off",
+      {
+        "ignore": null,
+        "customValidators": null,
+        "skipUndeclared": null
+      }
     ]
   }
 }
