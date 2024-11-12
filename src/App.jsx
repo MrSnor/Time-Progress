@@ -1,3 +1,4 @@
+import LifeProgress from "@/components/LifeProgress/index.jsx";
 import ProgressDay from "@/components/ProgressDayAndYear/ProgressDay";
 import ProgressHour from "@/components/ProgressDayAndYear/ProgressHour";
 import ProgressMinute from "@/components/ProgressDayAndYear/ProgressMinute";
@@ -21,7 +22,7 @@ const Index = () => {
   return (
     <>
       <div
-        className={`grid min-h-screen place-content-center bg-rose-800 text-white transition duration-500 ${
+        className={`grid min-h-screen place-content-center bg-rose-800 py-10 text-white transition duration-500 ${
           theme === "dark" ? "grayscale" : ""
         }`}
       >
@@ -58,6 +59,7 @@ const Index = () => {
           </Toggle>
         </div>
         <div className="w-[90vw] sm:w-[40rem]">
+          <LifeProgress />
           <ProgressMinute />
           <ProgressHour />
           <ProgressDay />
