@@ -46,7 +46,7 @@ const LifeProgress = () => {
           );
         })}
       </div>
-      {/* stats*/}
+      {/* stats container */}
       <div
         className={cn(
           "flex justify-between transition-all duration-300 ease-in-out",

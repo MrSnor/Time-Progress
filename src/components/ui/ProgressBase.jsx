@@ -1,4 +1,5 @@
 import VisibilityContext from "@/contexts/Visibility/VisibilityContext";
+import { cn } from "@/lib/utils.js";
 import { useContext } from "react";
 
 const ProgressBase = ({ label, progress: progressPercent, timeLeft }) => {
@@ -18,29 +19,32 @@ const ProgressBase = ({ label, progress: progressPercent, timeLeft }) => {
         </div>
 
         {/* Progress and timeleft Container */}
-        <div className="flex justify-between">
+        <div
+          className={cn(
+            "flex justify-between transition-all duration-300 ease-in-out",
+            // collapse the div if neither of the stat is visible
+            isPercentVisible || isTimeLeftVisible ? "max-h-10" : "max-h-0",
+          )}
+        >
           {/* Progress percentage */}
-          <span className={isPercentVisible ? "block" : "hidden"}>
+          <span
+            className={cn(
+              "transition-opacity duration-300 ease-in-out",
+              isPercentVisible ? "opacity-100" : "opacity-0",
+            )}
+          >
             {Math.round(progressPercent)}%
           </span>
 
           {/* Time left */}
           <span
-            className={`${
-              isTimeLeftVisible ? "block" : "hidden"
-            } w-full text-right`}
+            className={cn(
+              "transition-opacity duration-300 ease-in-out",
+              isTimeLeftVisible ? "opacity-100" : "opacity-0",
+            )}
           >
             {timeLeft}
           </span>
-
-          {/* placeholder text if both are not visible */}
-          <div
-            className={`${
-              isPercentVisible || isTimeLeftVisible ? "hidden" : "block"
-            } invisible select-none`}
-          >
-            xyz
-          </div>
         </div>
       </div>
     </div>
