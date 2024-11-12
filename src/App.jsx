@@ -22,48 +22,52 @@ const Index = () => {
   return (
     <>
       <div
-        className={`grid min-h-screen place-content-center bg-rose-800 py-10 text-white transition duration-500 ${
+        className={`grid min-h-screen bg-rose-800 px-10 pb-28 pt-14 text-white transition duration-500 sm:px-40 ${
           theme === "dark" ? "grayscale" : ""
         }`}
       >
-        <div className="title mb-4 flex justify-between text-center text-3xl">
-          {/* percent toggle */}
-          <Toggle
-            onClick={() => {
-              const newPercentVisibility = !isPercentVisible;
+        <div className="w-[80vw] sm:w-full">
+          <div className="mb-4 flex justify-between text-center text-3xl">
+            {/* percent toggle */}
+            <Toggle
+              onClick={() => {
+                const newPercentVisibility = !isPercentVisible;
 
-              setisPercentVisible(newPercentVisibility);
-              localStorage.setItem(
-                "storedPercentVisibility",
-                newPercentVisibility,
-              );
-            }}
-            className="whitespace-nowrap ring-1 ring-white/20"
-            pressed={isPercentVisible}
-          >
-            <Percent className="h-4 w-4" />
-          </Toggle>
-          <span className="">Time progress:</span>
+                setisPercentVisible(newPercentVisibility);
+                localStorage.setItem(
+                  "storedPercentVisibility",
+                  newPercentVisibility,
+                );
+              }}
+              className="whitespace-nowrap ring-1 ring-white/20"
+              pressed={isPercentVisible}
+            >
+              <Percent className="h-4 w-4" />
+            </Toggle>
+            <span className="">Time progress</span>
 
-          <Toggle
-            onClick={() => {
-              const newTimeVisibility = !isTimeLeftVisible;
-              setisTimeLeftVisible(newTimeVisibility);
-              localStorage.setItem("storedTimeVisibility", newTimeVisibility);
-            }}
-            className="whitespace-nowrap ring-1 ring-white/20"
-            pressed={isTimeLeftVisible}
-          >
-            {" "}
-            <Hourglass className="h-4 w-4" />{" "}
-          </Toggle>
-        </div>
-        <div className="w-[90vw] sm:w-[40rem]">
-          <LifeProgress />
-          <ProgressMinute />
-          <ProgressHour />
-          <ProgressDay />
-          <ProgressYear />
+            <Toggle
+              onClick={() => {
+                const newTimeVisibility = !isTimeLeftVisible;
+                setisTimeLeftVisible(newTimeVisibility);
+                localStorage.setItem("storedTimeVisibility", newTimeVisibility);
+              }}
+              className="whitespace-nowrap ring-1 ring-white/20"
+              pressed={isTimeLeftVisible}
+            >
+              {" "}
+              <Hourglass className="h-4 w-4" />{" "}
+            </Toggle>
+          </div>
+          <div className="flex flex-col justify-between gap-2 sm:flex-row sm:gap-10">
+            <LifeProgress className={"w-full sm:w-1/2"} />
+            <div className={"w-full sm:w-1/2"}>
+              <ProgressMinute />
+              <ProgressHour />
+              <ProgressDay />
+              <ProgressYear />
+            </div>
+          </div>
         </div>
       </div>
       <ToggleThemeButton />

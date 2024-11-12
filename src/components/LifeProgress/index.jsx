@@ -2,7 +2,7 @@ import VisibilityContext from "@/contexts/Visibility/VisibilityContext.jsx";
 import { cn } from "@/lib/utils.js";
 import { useContext } from "react";
 
-const LifeProgress = () => {
+const LifeProgress = ({ className }) => {
   const { isPercentVisible, isTimeLeftVisible } = useContext(VisibilityContext);
 
   const baseYear = new Date("2003");
@@ -15,7 +15,7 @@ const LifeProgress = () => {
 
   const arr = [...Array(expectedAge)].map((_, i) => i + 1);
   return (
-    <div>
+    <div className={className}>
       <h2 className={""}>Life Progress</h2>
       {/* Years passed */}
       <div className="my-2 grid grid-cols-8 gap-3">
