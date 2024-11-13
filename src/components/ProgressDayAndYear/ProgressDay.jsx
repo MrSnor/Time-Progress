@@ -3,7 +3,8 @@ import ProgressBase from "../ui/ProgressBase";
 
 const ProgressDay = () => {
   const [progress, setProgress] = useState(0);
-  const [timeLeft, setTimeLeft] = useState("0 hours left");
+  const [timeLeft, setTimeLeft] = useState(0);
+  const [formattedTimeLeft, setFormattedTimeLeft] = useState("0 hours left");
 
   const totalMillisecondsInDay = 24 * 60 * 60 * 1000;
 
@@ -23,7 +24,8 @@ const ProgressDay = () => {
     const minutesLeft = Math.floor(timeLeftInMilliseconds / 1000 / 60);
     const hoursLeft = Math.floor(minutesLeft / 60);
 
-    setTimeLeft(hoursLeft + " hours left");
+    setTimeLeft(hoursLeft);
+    setFormattedTimeLeft(hoursLeft + " hours left");
   };
 
   useEffect(() => {
@@ -39,6 +41,7 @@ const ProgressDay = () => {
       label="Day in progress"
       progress={progress}
       timeLeft={timeLeft}
+      formattedTimeLeft={formattedTimeLeft}
     />
   );
 };

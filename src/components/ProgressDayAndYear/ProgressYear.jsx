@@ -3,7 +3,8 @@ import ProgressBase from "../ui/ProgressBase";
 
 const ProgressYear = () => {
   const [progress, setProgress] = useState(0);
-  const [timeLeft, setTimeLeft] = useState("0 days left");
+  const [timeLeft, setTimeLeft] = useState(0);
+  const [formattedTimeLeft, setFormattedTimeLeft] = useState("0 days left");
 
   const updateProgress = () => {
     const now = new Date();
@@ -17,7 +18,8 @@ const ProgressYear = () => {
     const timeLeftInMilliseconds = totalMillisecondsInYear - millisecondsPassed;
     const daysLeft = Math.floor(timeLeftInMilliseconds / (1000 * 60 * 60 * 24));
 
-    setTimeLeft(daysLeft + " days left");
+    setTimeLeft(daysLeft);
+    setFormattedTimeLeft(daysLeft + " days left");
   };
 
   useEffect(() => {
@@ -33,6 +35,7 @@ const ProgressYear = () => {
       label="Year in progress"
       progress={progress}
       timeLeft={timeLeft}
+      formattedTimeLeft={formattedTimeLeft}
     />
   );
 };
