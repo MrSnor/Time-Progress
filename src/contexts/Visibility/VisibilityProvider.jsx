@@ -10,6 +10,8 @@ const VisibilityProvider = ({ children }) => {
     localStorage.getItem("storedPercentVisibility"),
   );
 
+  const storedView = localStorage.getItem("storedView");
+
   // using "nullish coalescing" operator to check if storedTimeVisibility is null
   // and so that "false" boolean value can also be used as a valid value
   const [isTimeLeftVisible, setisTimeLeftVisible] = useState(
@@ -19,6 +21,11 @@ const VisibilityProvider = ({ children }) => {
     storedPercentVisibility ?? true,
   );
 
+  /*
+   * state to keep track of active view (square or progress)
+   * */
+  const [activeView, setActiveView] = useState(storedView || "square");
+
   return (
     <VisibilityContext.Provider
       value={{
@@ -26,6 +33,8 @@ const VisibilityProvider = ({ children }) => {
         setisTimeLeftVisible,
         isPercentVisible,
         setisPercentVisible,
+        activeView,
+        setActiveView,
       }}
     >
       {children}
