@@ -1,22 +1,92 @@
+import { Input } from "@/components/ui/input";
 import VisibilityContext from "@/contexts/Visibility/VisibilityContext.jsx";
 import { cn } from "@/lib/utils.js";
-import { useContext } from "react";
+import { Settings } from "lucide-react";
+import { useContext, useState } from "react";
 
 const LifeProgress = ({ className }) => {
   const { isPercentVisible, isTimeLeftVisible } = useContext(VisibilityContext);
-
-  const baseYear = new Date("2003");
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [settings, setSettings] = useState({
+    baseYear: 2003,
+    expectedAge: 69,
+  });
 
   const currentYear = new Date();
+  const age = currentYear.getFullYear() - settings.baseYear;
+  const arr = [...Array(settings.expectedAge)].map((_, i) => i + 1);
 
-  const age = currentYear.getFullYear() - baseYear.getFullYear();
+  const handleSettingsSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    setSettings({
+      baseYear: parseInt(formData.get("baseYear")),
+      expectedAge: parseInt(formData.get("expectedAge")),
+    });
+    setIsSettingsOpen(false);
+  };
 
-  const expectedAge = 69;
-
-  const arr = [...Array(expectedAge)].map((_, i) => i + 1);
   return (
     <div className={className}>
-      <h2 className={""}>Life Progress</h2>
+      <div className="flex items-center justify-between">
+        <h2>Life Progress</h2>
+        <button
+          onClick={() => setIsSettingsOpen(!isSettingsOpen)}
+          className="rounded-sm p-2 transition-colors hover:bg-gray-800/20"
+          aria-label="Settings"
+        >
+          <Settings className="h-5 w-5" />
+        </button>
+      </div>
+
+      <div
+        className={cn(
+          "grid transition-all duration-300 ease-in-out",
+          isSettingsOpen
+            ? "grid-rows-[1fr] opacity-100"
+            : "grid-rows-[0fr] opacity-0",
+        )}
+      >
+        <div className="overflow-hidden">
+          <form onSubmit={handleSettingsSubmit} className="mb-4 space-y-4 pt-4">
+            <div className="space-y-2">
+              <label className="text-sm font-medium leading-none text-white">
+                Birth Year:
+              </label>
+              <Input
+                type="number"
+                name="baseYear"
+                defaultValue={settings.baseYear}
+                min="1900"
+                max={currentYear.getFullYear()}
+                className="bg-white text-black [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                onWheel={(e) => e.target.blur()}
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium leading-none text-white">
+                Expected Age:
+              </label>
+              <Input
+                type="number"
+                name="expectedAge"
+                defaultValue={settings.expectedAge}
+                min="1"
+                max="150"
+                className="bg-white text-black [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                onWheel={(e) => e.target.blur()}
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full rounded-md bg-black py-2 text-white transition-colors hover:bg-gray-800"
+            >
+              Save Changes
+            </button>
+          </form>
+        </div>
+      </div>
+
       {/* Years passed */}
       <div className="my-2 grid grid-cols-8 gap-3">
         {arr.map((item, i) => {
@@ -25,7 +95,7 @@ const LifeProgress = ({ className }) => {
               key={i}
               className={"relative grid aspect-square h-full w-full"}
             >
-              {/* div for background effect */}
+              {/* div for background effect for current year */}
               {item === age + 1 && (
                 <span
                   className={cn(
@@ -50,7 +120,6 @@ const LifeProgress = ({ className }) => {
       <div
         className={cn(
           "flex justify-between transition-all duration-300 ease-in-out",
-          // collapse the div if neither of the stat is visible
           isPercentVisible || isTimeLeftVisible ? "max-h-10" : "max-h-0",
         )}
       >
@@ -61,7 +130,7 @@ const LifeProgress = ({ className }) => {
             isPercentVisible ? "opacity-100" : "opacity-0",
           )}
         >
-          {((age / expectedAge) * 100).toFixed(1)}%
+          {((age / settings.expectedAge) * 100).toFixed(1)}%
         </span>
         {/* years left in numbers */}
         <span
@@ -70,7 +139,7 @@ const LifeProgress = ({ className }) => {
             isTimeLeftVisible ? "opacity-100" : "opacity-0",
           )}
         >
-          {expectedAge - age} years left
+          {settings.expectedAge - age} years left
         </span>
       </div>
     </div>
