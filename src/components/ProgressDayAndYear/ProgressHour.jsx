@@ -4,7 +4,8 @@ import ProgressBase from "../ui/ProgressBase";
 const ProgressHour = () => {
   const [progress, setProgress] = useState(0);
 
-  const [timeLeft, setTimeLeft] = useState("0 minutes left");
+  const [timeLeft, setTimeLeft] = useState(0);
+  const [formattedTimeLeft, setFormattedTimeLeft] = useState("0 minutes left");
 
   useEffect(() => {
     const updateProgress = () => {
@@ -23,7 +24,8 @@ const ProgressHour = () => {
         totalMillisecondsInHour - millisecondsPassed;
       const minutesLeft = Math.floor(timeLeftInMilliseconds / 1000 / 60);
 
-      setTimeLeft(minutesLeft + " minutes left");
+      setTimeLeft(minutesLeft);
+      setFormattedTimeLeft(minutesLeft + " minutes left");
     };
 
     const interval = setInterval(updateProgress, 1000);
@@ -38,6 +40,7 @@ const ProgressHour = () => {
       label="Hour in progress"
       progress={progress}
       timeLeft={timeLeft}
+      formattedTimeLeft={formattedTimeLeft}
     />
   );
 };
