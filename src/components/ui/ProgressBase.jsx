@@ -53,14 +53,16 @@ const ProgressBase = ({
         </div>
 
         {/* progress in squares */}
+        {/* using different max-h for "days" to maintain rate of transition */}
         <div
           className={cn(
             "flex flex-wrap gap-1",
-            activeView === "square"
-              ? timeParts[1] === "days"
-                ? "max-h-72"
-                : "max-h-20"
-              : "max-h-0",
+            activeView === "square" && "opacity-100",
+            activeView !== "square" && "max-h-0 opacity-0",
+            activeView === "square" && timeParts[1] !== "days" && "max-h-20",
+            activeView === "square" &&
+              timeParts[1] === "days" &&
+              "max-h-[360px]",
           )}
         >
           {[...Array(Math.round(timeUnitConversions[timeParts[1]]))].map(
