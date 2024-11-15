@@ -66,17 +66,34 @@ const ProgressBase = ({
           )}
         >
           {[...Array(Math.round(timeUnitConversions[timeParts[1]]))].map(
-            (_, i) => (
-              <div
-                key={i}
-                className={cn(
-                  "h-4 w-4 rounded-l-sm bg-white transition-all duration-500",
-                  i + 1 <= timeLeft
-                    ? "bg-red-400"
-                    : "rounded-sm bg-red-200 bg-opacity-30 ring-1 ring-red-900",
-                )}
-              ></div>
-            ),
+            (_, i) => {
+              const squareTime = i + 1;
+
+              // checks if the squareTime has passed the current time
+              const isSquarePassed = squareTime > timeLeft;
+
+              return (
+                <div
+                  key={i}
+                  // when time is past the current square, make it red 400, otherwise make it red 200
+                  className={cn(
+                    "relative h-4 w-4 rounded-l-sm bg-red-200/30 ring-1 ring-red-900 transition-all duration-500",
+                    isSquarePassed && "rounded-sm",
+                  )}
+                >
+                  {/* helper element to show progress
+                   - when time is past the current square, show the element in 0 width
+                   - when time is not past the current square, show the element in full width
+                   */}
+                  <div
+                    className={cn(
+                      "absolute inset-0 z-10 h-full overflow-hidden rounded-l-sm transition-all duration-1000",
+                      isSquarePassed ? "w-0" : "w-full bg-red-400",
+                    )}
+                  ></div>
+                </div>
+              );
+            },
           )}
         </div>
 
