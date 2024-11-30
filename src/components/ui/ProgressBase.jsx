@@ -27,11 +27,11 @@ const ProgressBase = ({
     <div className="flex flex-col items-center sm:flex-row sm:gap-5">
       <div
         className={cn(
-          "my-4 w-full text-white",
+          "w-full text-white",
           // "[&>div:not(.max-h-0)]:mb-3",
           activeView === "square" ? "space-y-1.5" : "space-y-3",
-          "[&:has(div.max-h-0)]:my-0",
-          // "[&>div.max-h-0]:my-0",
+          "[&>div.max-h-0]:!my-0", // it selects children with max-h-0 and negates the effect of space-y.
+          // "[&:has(div.max-h-0)]:my-0", // it selects the element itself if it has any child with max-h-0
           // transition and related properties for its children
           "[&>div]:overflow-hidden [&>div]:transition-all [&>div]:duration-300",
         )}
