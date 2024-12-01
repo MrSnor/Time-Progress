@@ -23,7 +23,7 @@ const Index = () => {
   return (
     <>
       <div
-        className={`grid min-h-screen bg-rose-800 px-10 pb-28 pt-14 text-white transition duration-500 sm:px-40 ${
+        className={`grid min-h-screen bg-rose-800 px-8 pb-28 pt-14 text-white transition duration-500 sm:px-16 lg:px-20 xl:px-24 ${
           theme === "dark" ? "grayscale" : ""
         }`}
       >

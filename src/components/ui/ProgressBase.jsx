@@ -46,7 +46,7 @@ const ProgressBase = ({
           )}
         >
           <div
-            className="h-full rounded-full bg-white "
+            className="h-full rounded-full bg-white transition-all duration-300 ease-in-out"
             // to show progress 1 when progress is 0
             style={{ width: `${progressPercent < 1 ? 1 : progressPercent}%` }}
           ></div>
