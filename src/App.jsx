@@ -23,13 +23,13 @@ const Index = () => {
   return (
     <>
       <div
-        className={`grid min-h-screen bg-rose-800 px-8 pb-28 pt-14 text-white transition duration-500 sm:px-16 lg:px-20 xl:px-24 ${
+        className={`grid min-h-screen bg-rose-800 px-6 pb-28 pt-14 text-white transition duration-500 sm:px-16 lg:px-20 xl:px-24 ${
           theme === "dark" ? "grayscale" : ""
         }`}
       >
-        <div className="w-[80vw] sm:w-full">
-          <div className="mb-4 flex justify-between text-center text-3xl">
-            <div className="flex gap-2">
+        <div className="mx-auto">
+          <div className="mb-4 flex items-center justify-between text-center text-2xl sm:text-3xl">
+            <div className="flex items-center gap-2">
               {" "}
               {/* percent toggle */}
               <Toggle
