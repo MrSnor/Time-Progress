@@ -56,45 +56,44 @@ const ProgressBase = ({
         {/* using different max-h for "days" to maintain rate of transition */}
         <div
           className={cn(
-            "flex flex-wrap gap-1",
-            activeView === "square" && "opacity-100",
-            activeView !== "square" && "max-h-0 opacity-0",
-            activeView === "square" && timeParts[1] !== "days" && "max-h-20",
-            activeView === "square" &&
-              timeParts[1] === "days" &&
-              "max-h-[360px]",
+            "grid transition-all duration-300 ease-in-out",
+            activeView === "square"
+              ? "grid-rows-[1fr] opacity-100"
+              : "grid-rows-[0fr] opacity-0",
           )}
         >
-          {[...Array(Math.round(timeUnitConversions[timeParts[1]]))].map(
-            (_, i) => {
-              const squareTime = i + 1;
+          <div className={cn("flex flex-wrap gap-1 overflow-hidden")}>
+            {[...Array(Math.round(timeUnitConversions[timeParts[1]]))].map(
+              (_, i) => {
+                const squareTime = i + 1;
 
-              // checks if the squareTime has passed the current time
-              const isSquarePassed = squareTime > timeLeft;
+                // checks if the squareTime has passed the current time
+                const isSquarePassed = squareTime > timeLeft;
 
-              return (
-                <div
-                  key={i}
-                  // when time is past the current square, make it red 400, otherwise make it red 200
-                  className={cn(
-                    "relative h-4 w-4 rounded-l-sm bg-red-200/30 ring-1 ring-red-900 transition-all duration-500",
-                    isSquarePassed && "rounded-sm",
-                  )}
-                >
-                  {/* helper element to show progress
-                   - when time is past the current square, show the element in 0 width
-                   - when time is not past the current square, show the element in full width
-                   */}
+                return (
                   <div
+                    key={i}
+                    // when time is past the current square, make it red 400, otherwise make it red 200
                     className={cn(
-                      "absolute inset-0 z-10 h-full overflow-hidden rounded-l-sm transition-all duration-1000",
-                      isSquarePassed ? "w-0" : "w-full bg-red-400",
+                      "relative h-4 w-4 rounded-l-sm bg-red-200/30 ring-1 ring-red-900 transition-all duration-500",
+                      isSquarePassed && "rounded-sm",
                     )}
-                  ></div>
-                </div>
-              );
-            },
-          )}
+                  >
+                    {/* helper element to show progress
+                           - when time is past the current square, show the element in 0 width
+                           - when time is not past the current square, show the element in full width
+                           */}
+                    <div
+                      className={cn(
+                        "absolute inset-0 z-10 h-full overflow-hidden rounded-l-sm transition-all duration-1000",
+                        isSquarePassed ? "w-0" : "w-full bg-red-400",
+                      )}
+                    ></div>
+                  </div>
+                );
+              },
+            )}
+          </div>
         </div>
 
         {/* Progress and timeleft Container */}
